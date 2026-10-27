@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI English Coach – Gia sư tiếng Anh AI</title>
+  <!-- Font hỗ trợ tiếng Việt (có font dự phòng nếu mất mạng) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>AI English Coach</h1>
+    <nav class="tabs">
+      <button class="tab active" data-view="chat">Hội thoại</button>
+      <button class="tab" data-view="test">Kiểm tra</button>
+    </nav>
+    <button id="openSettings" class="ghost">Cài đặt</button>
+  </header>
+
+  <!-- Vùng hiện thông báo lỗi -->
+  <p id="notice" role="alert" hidden></p>
+
+  <main>
+    <!-- Tính năng 1 + 2: hội thoại và sửa lỗi -->
+    <section id="view-chat">
+      <div class="controls">
+        <label>Chủ đề
+          <select id="topic">
+            <option value="daily life">Đời sống</option>
+            <option value="travel">Du lịch</option>
+            <option value="job interview">Phỏng vấn xin việc</option>
+          </select>
+        </label>
+        <label>Trình độ
+          <select id="chatLevel">
+            <option>A1</option><option>A2</option><option selected>B1</option><option>B2</option>
+          </select>
+        </label>
+      </div>
+      <div id="messages" class="messages" aria-live="polite"></div>
+      <form id="chatForm" class="composer">
+        <input id="chatInput" type="text" placeholder="Viết bằng tiếng Anh…" autocomplete="off">
+        <button id="sendBtn" type="submit">Gửi</button>
+      </form>
+    </section>
+
+    <!-- Tính năng 3: bài kiểm tra -->
+    <section id="view-test" hidden>
+      <div class="controls">
+        <label>Trình độ
+          <select id="testLevel">
+            <option>A1</option><option>A2</option><option selected>B1</option><option>B2</option>
+          </select>
+        </label>
+        <button id="genTest" type="button">Tạo bài kiểm tra</button>
+      </div>
+      <div id="testArea"></div>
+    </section>
+  </main>
+
+  <!-- Hộp thoại Cài đặt: nhập API key -->
+  <dialog id="settings">
+    <form method="dialog" class="settings-form">
+      <h2>Cài đặt</h2>
+      <label>Gemini API key
+        <input id="apiKey" type="password" placeholder="Dán API key của bạn" autocomplete="off">
+      </label>
+      <label>Tên model
+        <input id="modelName" type="text" placeholder="gemini-flash-latest">
+      </label>
+      <p class="hint">Lấy key miễn phí tại
+        <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a>.
+        Key chỉ lưu trong trình duyệt của bạn.</p>
+      <div class="row">
+        <button id="saveSettings" type="button">Lưu</button>
+        <button value="cancel" class="ghost">Đóng</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
